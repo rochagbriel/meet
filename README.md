@@ -117,15 +117,11 @@ The Meet App leverages serverless functions, specifically AWS Lambda, to handle 
 
 - The app allows users to search for events based on city name. When a user performs a search, a serverless function is invoked to retrieve and filter the relevant event data from the database. The function dynamically generates the search results and returns them to the user interface, enabling efficient event discovery.
 
-### 3. Offline Support: 
-
-- Serverless functions play a crucial role in enabling offline support for the Meet App. When a user has no internet connection, the app displays cached data using serverless functions. This ensures that users can continue to access event information and browse through the app even without an internet connection.
-
-### 4. Scalability and Cost Efficiency: 
+### 3. Scalability and Cost Efficiency: 
 
 - By utilizing serverless functions, the Meet App benefits from automatic scaling based on demand. As the app experiences varying levels of user activity, the serverless functions scale dynamically, ensuring optimal performance without the need for manual provisioning or managing infrastructure. Additionally, serverless functions offer cost efficiency as they charge based on actual usage, eliminating the cost of idle resources.
 
-### 5. Simplified Development: 
+### 4. Simplified Development: 
 
 - Serverless functions provide a simplified development experience for the Meet App. With serverless architecture, developers can focus on writing the business logic and functionality of the app without the need to manage servers or infrastructure. This streamlined development approach allows for faster iterations and updates to the app.
 
