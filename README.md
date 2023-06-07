@@ -111,11 +111,11 @@ The Meet App leverages serverless functions, specifically AWS Lambda, to handle 
 
 ### 1. Event Registration: 
 
-- When a user registers for an event, a serverless function is triggered to handle the registration process. The function interacts with the database, adds the user's registration details, and sends a confirmation email. This ensures a seamless and efficient registration experience for users.
+- When a user registers for an event, a serverless function is triggered to handle the registration process. The function interacts with the database and adds the user's registration details. This ensures a seamless and efficient registration experience for users.
 
 ### 2. Event Search: 
 
-- The app allows users to search for events based on specific criteria. When a user performs a search, a serverless function is invoked to retrieve and filter the relevant event data from the database. The function dynamically generates the search results and returns them to the user interface, enabling efficient event discovery.
+- The app allows users to search for events based on city name. When a user performs a search, a serverless function is invoked to retrieve and filter the relevant event data from the database. The function dynamically generates the search results and returns them to the user interface, enabling efficient event discovery.
 
 ### 3. Offline Support: 
 
