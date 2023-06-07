@@ -105,6 +105,32 @@ So that I can easily interpret and understand the distribution or trends of even
 - When the user requests to view a chart with the number of upcoming events in each city;
 - Then the app should generate and display a chart showing the distribution of events in each city.
 
+## Usage of Severless Functions
+
+The Meet App leverages serverless functions, specifically AWS Lambda, to handle various backend operations. Here's how serverless functions are used in the app:
+
+### 1. Event Registration: 
+
+- When a user registers for an event, a serverless function is triggered to handle the registration process. The function interacts with the database, adds the user's registration details, and sends a confirmation email. This ensures a seamless and efficient registration experience for users.
+
+### 2. Event Search: 
+
+- The app allows users to search for events based on specific criteria. When a user performs a search, a serverless function is invoked to retrieve and filter the relevant event data from the database. The function dynamically generates the search results and returns them to the user interface, enabling efficient event discovery.
+
+### 3. Offline Support: 
+
+- Serverless functions play a crucial role in enabling offline support for the Meet App. When a user has no internet connection, the app displays cached data using serverless functions. This ensures that users can continue to access event information and browse through the app even without an internet connection.
+
+### 4. Scalability and Cost Efficiency: 
+
+- By utilizing serverless functions, the Meet App benefits from automatic scaling based on demand. As the app experiences varying levels of user activity, the serverless functions scale dynamically, ensuring optimal performance without the need for manual provisioning or managing infrastructure. Additionally, serverless functions offer cost efficiency as they charge based on actual usage, eliminating the cost of idle resources.
+
+### 5. Simplified Development: 
+
+- Serverless functions provide a simplified development experience for the Meet App. With serverless architecture, developers can focus on writing the business logic and functionality of the app without the need to manage servers or infrastructure. This streamlined development approach allows for faster iterations and updates to the app.
+
+In summary, the Meet App effectively utilizes serverless functions to handle event registration, search, offline support, scalability, and cost efficiency. The use of serverless technology simplifies development and ensures a seamless user experience, making it a valuable component of the app's architecture.
+
 ## Technologies Used
 
 - JavaScript: Programming language used for the client-side development;
