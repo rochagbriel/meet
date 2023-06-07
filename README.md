@@ -109,13 +109,12 @@ So that I can easily interpret and understand the distribution or trends of even
 
 - JavaScript: Programming language used for the client-side development;
 - React.js: JavaScript library for building the user interface;
-- React Router: Declarative routing for navigation between views;
-- Redux Toolkit: State management for efficient data handling;
+- React Scripts: Preconfigured scripts for efficient React application development, including hot reloading, production builds, linting, testing, and deployment.
 - React-Bootstrap: CSS framework for responsive and visually appealing design;
-- Parcel: Web application bundler for easy setup and development;
 - Prettier: Code formatter for consistent and clean code styling;
 - npm: Package manager for managing dependencies and running scripts;
-- SCSS: CSS preprocessor for enhanced styling capabilities.
+- OAuth2: Secure authorization framework for granting limited access to user resources between websites and applications without sharing credentials;
+- AWS Lambda: Serverless computing service by AWS for running code without managing servers, ensuring scalability and simplified development.
 
 ## Credits
 
