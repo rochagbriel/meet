@@ -46,3 +46,43 @@ module.exports.getAuthURL = async () => {
     }),
   };
 };
+
+module.exports.getAccessToken = async (event) => { // Get Google OAuth2 access token
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+  return new Promise((resolve, reject) => {
+    oAuth2Client.getToken(code, (err, token) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(token);
+    });
+  })
+    .then((token) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+        body: JSON.stringify(token),
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    });
+}
+
+// endpoints:
+//   GET - https://ed8mr9xu2k.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url
+//   GET - https://ed8mr9xu2k.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}
