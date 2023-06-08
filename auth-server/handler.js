@@ -30,7 +30,7 @@ const oAuth2Client = new google.auth.OAuth2( // Create Google oAuth2 client
 module.exports.getAuthURL = async () => {
   // Get Google oAuth2 URL
 
-  const authUrl = oAuth2Client.generateAuthUrl({ 
+  const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
   });
@@ -47,7 +47,8 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-module.exports.getAccessToken = async (event) => { // Get Google OAuth2 access token
+module.exports.getAccessToken = async (event) => {
+  // Get Google OAuth2 access token
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
@@ -81,8 +82,61 @@ module.exports.getAccessToken = async (event) => { // Get Google OAuth2 access t
         body: JSON.stringify(err),
       };
     });
+};
+
+module.exports.getCalendarEvents = (event) => {
+  // Get Google Calendar events
+
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  const access_token = decodeURIComponent(
+    `${event.pathParameters.access_token}`
+  );
+
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => { // Get events
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: 'startTime',
+      },
+      (err, res) => { 
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      }
+    );
+  })
+  .then((results) => { // Return events
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+      },
+      body: JSON.stringify({ events: results.data.items }),
+    };
+  })
+  .catch((err) => { // Return error
+    return {
+      statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(err),
+    };
+  });
 }
 
 // endpoints:
 //   GET - https://ed8mr9xu2k.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url
 //   GET - https://ed8mr9xu2k.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}
+//   GET - https://ed8mr9xu2k.execute-api.eu-central-1.amazonaws.com/dev/api/get-calendar/{access_token}
