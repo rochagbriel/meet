@@ -1,16 +1,48 @@
-'use strict';
+const { google } = require('googleapis'); // Google API library
+const OAuth2 = google.auth.OAuth2; // Google oAuth2 library
+const calendar = google.calendar('v3'); // Google Calendar API v3 library
 
-module.exports.hello = async (event) => {
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']; // Google Calendar scope
+
+const credentials = {
+  // Google API credentials
+  client_id: process.env.CLIENT_ID,
+  project_id: process.env.PROJECT_ID,
+  client_secret: process.env.CLIENT_SECRET,
+  calendar_id: process.env.CALENDAR_ID,
+  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+  token_uri: 'https://oauth2.googleapis.com/token',
+  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+  redirect_uris: ['https://rochagbriel.github.io/meet/'],
+  javascript_origins: [
+    'https://rochagbriel.github.io',
+    'http://localhost:3000',
+  ],
+};
+
+const { client_secret, client_id, redirect_uris, calendar_id } = credentials; // Destructure Google credentials
+const oAuth2Client = new google.auth.OAuth2( // Create Google oAuth2 client
+  client_id,
+  client_secret,
+  redirect_uris[0]
+);
+
+module.exports.getAuthURL = async () => {
+  // Get Google oAuth2 URL
+
+  const authUrl = oAuth2Client.generateAuthUrl({ 
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
+    body: JSON.stringify({
+      authUrl: authUrl,
+    }),
   };
-
 };

@@ -23,10 +23,15 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs18.x
+  region: eu-central-1
+  timeout: 60 # Optimal, in seconds, dafault is 6 seconds.
+  environment: 
+    CLIENT_ID: ${file(config.json):CLIENT_ID}
+    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
+    PROJECT_ID: ${file(config.json):PROJECT_ID}
+    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  # stage: dev
 
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
@@ -59,8 +64,12 @@ provider:
 #    - include-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  getAuthURL:
+    handler: handler.getAuthURL
+    events:
+      - http:
+          path: api/get-auth-url
+          method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -112,3 +121,4 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
