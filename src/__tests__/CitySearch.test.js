@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CitySearch from '../CitySearch';
+import CitySearch from '../Features/CitySearch';
 import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
@@ -8,7 +8,9 @@ describe('<CitySearch /> component', () => {
   let locations, CitySearchWrapper;
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />);
+    CitySearchWrapper = shallow(
+      <CitySearch locations={locations} updateEvents={() => {}} />
+    );
   });
 
   test('render text input', () => {
@@ -68,7 +70,7 @@ describe('<CitySearch /> component', () => {
     expect(CitySearchWrapper.state('query')).toBe(suggestions[0]);
   });
 
-  test('selecting CitySearch input reveals the suggestions list', () => {  
+  test('selecting CitySearch input reveals the suggestions list', () => {
     CitySearchWrapper.find('.city').simulate('focus');
     expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
     expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({
@@ -76,27 +78,26 @@ describe('<CitySearch /> component', () => {
     });
   });
 
-    test('selecting a suggestion should hide the suggestions list', () => {
-        CitySearchWrapper.setState({
-            query: 'Berlin',
-            showSuggestions: undefined
-        });
-        CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
-        expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
-        expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({
-            display: 'none',
-        });
+  test('selecting a suggestion should hide the suggestions list', () => {
+    CitySearchWrapper.setState({
+      query: 'Berlin',
+      showSuggestions: undefined,
     });
-    
-    test('suggestions list will appear upon having a focus on the input field', () => {
-        CitySearchWrapper.setState({
-            query: '',
-            suggestions: locations,
-            showSuggestions: undefined
-        });
-        CitySearchWrapper.find('.city').simulate('focus');
-        expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
-        expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({});
+    CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+    expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({
+      display: 'none',
     });
-    
+  });
+
+  test('suggestions list will appear upon having a focus on the input field', () => {
+    CitySearchWrapper.setState({
+      query: '',
+      suggestions: locations,
+      showSuggestions: undefined,
+    });
+    CitySearchWrapper.find('.city').simulate('focus');
+    expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({});
+  });
 });

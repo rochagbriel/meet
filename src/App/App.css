@@ -24,8 +24,8 @@ p {
   display: block;
 }
 
-input[type="text"],
-input[type="number"] {
+input[type='text'],
+input[type='number'] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
@@ -195,10 +195,8 @@ input[type="number"] {
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 }
-
-
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
