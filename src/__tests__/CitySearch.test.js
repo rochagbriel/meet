@@ -8,7 +8,7 @@ describe('<CitySearch /> component', () => {
   let locations, CitySearchWrapper;
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+    CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />);
   });
 
   test('render text input', () => {
@@ -58,7 +58,7 @@ describe('<CitySearch /> component', () => {
     });
     expect(CitySearchWrapper.state('suggestions')).toEqual(filteredLocations);
   });
-  
+
   test('selecting a suggestion should change query state', () => {
     CitySearchWrapper.setState({
       query: 'Berlin',

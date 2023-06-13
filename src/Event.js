@@ -16,7 +16,7 @@ class Event extends Component {
         <div className="event">
             <h1 className="summary">{event.summary}</h1>
             <p className="event-start">
-                {new Date(event.start.dateTime).toLocaleDateString}
+                {new Date(event.start.dateTime).toString()}
             </p>
             <p className="event-location">
                 {`@${event.summary} | ${event.location}`}
