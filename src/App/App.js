@@ -61,6 +61,8 @@ class App extends Component {
 }
 
   render() {
+    const { events } = this.state;
+    const eventsToShow = events.length > 32 ? events.slice(0, this.state.numberOfEvents) : events;
     return (
       <div className='App'>
         <img src={logo} className='logo' alt='logo' />
@@ -69,7 +71,7 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
+        <EventList events={eventsToShow} />
       </div>
     );
   }
