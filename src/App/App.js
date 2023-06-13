@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import EventList from '../Features/EventList';
-import CitySearch from '../Features/CitySearch';
-import NumberOfEvents from '../Features/NumberOfEvents';
+import EventList from './EventList';
+import CitySearch from './CitySearch';
+import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from '../api';
+import logo from '../img/logo.png';
+import '../nprogress.css';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
+    numberOfEvents: 32,
+    currentLocation: 'all',
   };
 
   componentDidMount() {
@@ -27,26 +31,44 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    const { currentLocation } = this.state;
+    if (location) {
     getEvents().then((events) => {
       const locationEvents =
         location === 'all'
           ? events
           : events.filter((event) => event.location === location);
+      const eventsToShow = locationEvents.slice(0, eventCount);
       this.setState({
-        events: locationEvents,
+        events: eventsToShow,
+        currentLocation: location,
+        numberOfEvents: eventCount,
       });
     });
-  };
+  } else {
+    getEvents().then((events) => {
+      const locationEvents = (currentLocation === 'all') 
+      ? events
+      : events.filter((event) => event.location === currentLocation);
+      const eventsToShow = locationEvents.slice(0, eventCount);
+      this.setState({
+        events: eventsToShow,
+        numberOfEvents: eventCount,
+      });
+    });
+  }
+}
 
   render() {
     return (
       <div className='App'>
+        <img src={logo} className='logo' alt='logo' />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
-        <NumberOfEvents />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>
     );

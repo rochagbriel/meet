@@ -1,7 +1,21 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+
+/* Color Theme Swatches in Hex
+$Meet-Logo-1-hex: #ed684f;
+$Meet-Logo-2-hex: #F27D72;
+$Meet-Logo-3-hex: #F29991;
+$Meet-Logo-4-hex: #F2BFBB;
+$Meet-Logo-5-hex: #F2F2F2;
+*/
+html {
+  background-color: #ed684f;
+}
+
 .App {
   text-align: center;
   padding: 2% 5%;
+  font-family: 'Montserrat', sans-serif;
+  
 }
 
 .App * {
@@ -34,6 +48,15 @@ input[type='number'] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  margin-top: 10px;
+}
+
+.logo {
+  height: 15.5rem;
+  padding: 0;
+  margin: 0;
+  border: 3px solid #f2f2f2;
+  border-radius: 5%;
 }
 
 .city {
@@ -83,6 +106,7 @@ input[type='number'] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  background-color: #F2F2f2;
 }
 
 .details-btn {
@@ -118,6 +142,11 @@ input[type='number'] {
   width: 200px;
   margin: 20px auto;
   text-align: center;
+}
+
+.number-of-events-label {
+  font-weight: 600;
+  color: white;
 }
 
 .button-wrapper {
@@ -195,7 +224,7 @@ input[type='number'] {
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
-  font-family: 'Roboto';
+  font-family: 'Montserrat', sans-serif;
 }
 
 @media only screen and (min-width: 992px) {
