@@ -20,6 +20,8 @@ class NumberOfEvents extends Component {
           className='number-of-events-input'
           value={this.state.query}
           onChange={this.handleInputChanged}
+          min={1}
+          max={50}
         />
       </div>
     );
