@@ -137,6 +137,9 @@ In summary, the Meet App effectively utilizes serverless functions to handle eve
 - npm: Package manager for managing dependencies and running scripts;
 - OAuth2: Secure authorization framework for granting limited access to user resources between websites and applications without sharing credentials;
 - AWS Lambda: Serverless computing service by AWS for running code without managing servers, ensuring scalability and simplified development.
+- Jest: JavaScript testing framework for unit testing and assertions.
+- Cucumber: Behavior-driven development (BDD) testing framework for testing application behavior using plain-text specifications.
+- Puppeteer: Node.js library for controlling headless Chrome or Chromium browsers, used for automated browser testing and web scraping.
 
 ## Credits
 
