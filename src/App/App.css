@@ -75,7 +75,6 @@ input[type='number'] {
 
 .suggestions {
   width: 250px;
-  position: absolute;
   z-index: 2;
   align-self: center;
   margin: 0;
@@ -159,8 +158,10 @@ input[type='number'] {
 }
 
 .Alert {
-  position: fixed;
-  top: 0.5rem;
+  background-color: white;
+  border-radius: 4px;
+  filter: drop-shadow(0px 0px 2px #000);
+
 }
 
 .data-vis-wrapper {
