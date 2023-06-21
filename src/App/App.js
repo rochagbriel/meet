@@ -3,10 +3,11 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents } from '../api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from '../api';
 import logo from '../img/logo.png';
 import '../nprogress.css';
 import { WarningAlert } from '../components/Alert';
+import WelcomeScreen from './WelcomeScreen';
 
 class App extends Component {
   state = {
@@ -15,10 +16,17 @@ class App extends Component {
     numberOfEvents: 32,
     currentLocation: 'all',
     warningText: '',
+    showWecomeScreen: undefined
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = await searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
@@ -27,6 +35,7 @@ class App extends Component {
         });
       }
     });
+  }
   }
 
   componentWillUnmount() {
@@ -79,6 +88,8 @@ class App extends Component {
   render() {
     const { events } = this.state;
     const eventsToShow = events.length > 32 ? events.slice(0, this.state.numberOfEvents) : events;
+    if (this.state.showWelcomeScreen === undefined) return <div className='App' />
+
     return (
       <div className='App'>
         <WarningAlert text={this.state.warningText} />
@@ -89,6 +100,7 @@ class App extends Component {
         />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
         <EventList events={eventsToShow} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
