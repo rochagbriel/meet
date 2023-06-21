@@ -6,6 +6,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from '../api';
 import logo from '../img/logo.png';
 import '../nprogress.css';
+import { WarningAlert } from '../components/Alert';
 
 class App extends Component {
   state = {
@@ -13,6 +14,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     currentLocation: 'all',
+    warningText: '',
   };
 
   componentDidMount() {
@@ -30,6 +32,8 @@ class App extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
+
+  
 
   updateEvents = (location, eventCount) => {
     const { currentLocation } = this.state;
@@ -58,13 +62,26 @@ class App extends Component {
       });
     });
   }
-}
+  if (!navigator.onLine) {
+    this.setState({
+      warningText: 'You are currently offline. Events displayed may not be up-to-date.'
+    });
+  }
+  else {
+    this.setState({
+      warningText: ''
+    });
+  }
+};
+
+
 
   render() {
     const { events } = this.state;
     const eventsToShow = events.length > 32 ? events.slice(0, this.state.numberOfEvents) : events;
     return (
       <div className='App'>
+        <WarningAlert text={this.state.warningText} />
         <img src={logo} className='logo' alt='logo' />
         <CitySearch
           locations={this.state.locations}
