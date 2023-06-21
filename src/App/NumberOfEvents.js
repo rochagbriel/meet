@@ -32,8 +32,8 @@ class NumberOfEvents extends Component {
           className='number-of-events-input'
           value={this.state.query}
           onChange={this.handleInputChanged}
-          // min={1}
-          // max={50}
+          min={1}
+          max={50}
         />
         <ErrorAlert text={this.state.errorText} />
       </div>
