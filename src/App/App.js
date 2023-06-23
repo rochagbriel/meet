@@ -128,8 +128,10 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
         />
-          {this.state.currentLocation === 'all' ? (
-          <><h4 className='chart-title'>Events in each city:</h4><div className='data-vis-wrapper'>
+        {this.state.currentLocation === 'all' ? (
+          <>
+            <h4 className='chart-title'>Events in each city:</h4>
+            <div className='data-vis-wrapper'>
               <EventGenre className='pizza-chart' events={events} />
               <ResponsiveContainer className='chart' height={400}>
                 <ScatterChart
@@ -146,13 +148,15 @@ class App extends Component {
                     dataKey='number'
                     type='number'
                     name='number of events'
-                    allowDecimals={false} />
+                    allowDecimals={false}
+                  />
                   <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                   <Scatter data={this.getData()} fill='#ed684f' />
                 </ScatterChart>
               </ResponsiveContainer>
-            </div></>
-          ) : null}
+            </div>
+          </>
+        ) : null}
         <EventList events={eventsToShow} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}

@@ -14,7 +14,6 @@ html {
 .App {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  
 }
 
 .App * {
@@ -114,7 +113,7 @@ input[type='number'] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-  background-color: #F2F2f2;
+  background-color: #f2f2f2;
 }
 
 .details-btn {
@@ -169,13 +168,12 @@ input[type='number'] {
   background-color: white;
   border-radius: 4px;
   filter: drop-shadow(0px 0px 2px #000);
-
 }
 
 .data-vis-wrapper {
   padding: 1% 2%;
   border-radius: 10px;
-  background-color: #F2F2f2;
+  background-color: #f2f2f2;
   display: flex;
   align-items: center;
   flex-direction: column;
