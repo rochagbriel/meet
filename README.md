@@ -132,7 +132,10 @@ In summary, the Meet App effectively utilizes serverless functions to handle eve
 - JavaScript: Programming language used for the client-side development;
 - React.js: JavaScript library for building the user interface;
 - React Scripts: Preconfigured scripts for efficient React application development, including hot reloading, production builds, linting, testing, and deployment.
-- React-Bootstrap: CSS framework for responsive and visually appealing design;
+- Recharts: Charting library for creating interactive and customizable charts in React applications.
+- Enzyme: JavaScript testing utility for React that makes it easier to test React components' output.
+- gh-pages: GitHub Pages deployment library for easily publishing static websites from a GitHub repository.
+- googleapis: Library for accessing various Google APIs and services.
 - Prettier: Code formatter for consistent and clean code styling;
 - npm: Package manager for managing dependencies and running scripts;
 - OAuth2: Secure authorization framework for granting limited access to user resources between websites and applications without sharing credentials;
