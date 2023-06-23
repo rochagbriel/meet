@@ -11,6 +11,18 @@ Welcome to Meet App, a serverless, progressive web application (PWA) with React 
 - Add an app shortcut to the home screen
 - View a chart showing the number of upcoming events by city
 
+## Screenshoots
+
+### Home
+![home](src/img/home.png)
+
+### Google OAuth2
+![GoogleAuth](src/img/auth.png)
+
+### Main View
+![MainView](src/img/main.png)
+![MainView Mobile](src/img/mobile.png)
+
 ## User Stories
 
 ### FEATURE 1: FILTER EVENTS BY CITY
